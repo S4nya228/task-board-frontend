@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Plus, Edit3 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -12,9 +11,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 
-const TaskForm = ({ editingTask = null, isLoading = false }) => {
-	// Проста валідація
-
+const TaskForm = ({ editingTask = null, isLoading = false, onCancel }) => {
 	return (
 		<div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
 			<div className="flex items-center gap-3 mb-6">
@@ -77,13 +74,16 @@ const TaskForm = ({ editingTask = null, isLoading = false }) => {
 							: 'Додати завдання'}
 					</Button>
 
-					<Button
-						type="button"
-						variant="outline"
-						className="flex-1 sm:flex-none"
-					>
-						Скасувати
-					</Button>
+					{onCancel && (
+						<Button
+							type="button"
+							variant="outline"
+							className="flex-1 sm:flex-none"
+							onClick={onCancel}
+						>
+							Скасувати
+						</Button>
+					)}
 				</div>
 			</form>
 		</div>
